@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <title>Oxfam France — Formulaire de don enrichi (prototype iRaiser)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,15 +139,11 @@
 
   .hero-logo{
     position:absolute; right:1.4rem; bottom:1.4rem; z-index:3;
-    display:flex; align-items:center; gap:.55rem; color:var(--green);
+    background:#fff; border-radius:14px; padding:.5rem .8rem;
+    box-shadow:0 4px 14px rgba(0,0,0,.3);
   }
-  .hero-logo svg{width:44px; height:44px}
-  .hero-logo .wordmark{
-    font-family:'Oxfam Global Headline',"Arial Black",Arial,sans-serif;
-    font-size:1.5rem; line-height:1; letter-spacing:.5px; text-transform:uppercase;
-  }
-  .hero-logo .wordmark small{display:block; font-family:"Open Sans",Arial,sans-serif; font-size:.72rem; letter-spacing:.3px; text-transform:none}
-  @media (max-width:640px){ .hero-logo{position:static; margin-top:2rem; justify-content:center} }
+  .hero-logo img{display:block; height:38px; width:auto}
+  @media (max-width:640px){ .hero-logo{position:static; margin-top:2rem} }
 
   /* ── Sections ───────────────────────────────────────── */
   .wrap{max-width:1000px; margin:0 auto; padding:0 1.2rem}
@@ -160,16 +157,22 @@
   .sec-sub{text-align:center; color:var(--ink-soft); max-width:58ch; margin:0 auto 2.2rem}
 
   /* ── Bloc combats ───────────────────────────────────── */
-  .combats{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.1rem}
+  .combats{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.3rem}
   .combat-card{
-    background:var(--card); border-radius:20px;
-    padding:1.5rem 1.3rem; box-shadow:var(--shadow);
+    background:var(--card); border-radius:20px; overflow:hidden;
+    box-shadow:var(--shadow); display:flex; flex-direction:column;
   }
-  .combat-ico{
-    width:52px; height:52px; border-radius:50%; background:var(--cream);
-    display:flex; align-items:center; justify-content:center; margin-bottom:.9rem;
+  .combat-photo{
+    position:relative; height:170px; overflow:hidden; background:var(--cream);
   }
-  .combat-ico svg{width:26px; height:26px; stroke:var(--green-deep)}
+  .combat-photo img{width:100%; height:100%; object-fit:cover; display:block}
+  .combat-photo .combat-ico{
+    position:absolute; bottom:-22px; left:1.3rem;
+    width:48px; height:48px; border-radius:50%; background:#fff;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 3px 10px rgba(0,0,0,.2);
+  }
+  .combat-ico svg{width:24px; height:24px; stroke:var(--green-deep)}
+  .combat-body{padding:1.9rem 1.3rem 1.5rem}
   .combat-card h4{margin:0 0 .4rem; font-size:1.02rem; font-family:'Oxfam Global Headline',Arial,sans-serif; font-weight:normal; text-transform:uppercase; color:var(--green-deep)}
   .combat-card p{margin:0; font-size:.88rem; color:var(--ink-soft)}
 
@@ -325,14 +328,34 @@
   .stats b{display:block; font-family:'Oxfam Global Headline',"Arial Black",Arial,sans-serif; font-weight:normal; font-size:2.1rem; color:#BECE45}
   .stats span{font-size:.85rem; color:#e2e8d8}
 
+  /* ── Bandeau CTA plein cadre ────────────────────────── */
+  .cta-band{
+    position:relative; overflow:hidden; text-align:center; color:#fff;
+    padding:4rem 1.2rem;
+  }
+  .cta-band img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; z-index:0;
+  }
+  .cta-band .cta-scrim{
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(90deg, rgba(51,97,20,.92) 0%, rgba(51,97,20,.72) 45%, rgba(51,97,20,.35) 100%);
+  }
+  .cta-band > *{position:relative; z-index:2}
+  .cta-band h2{
+    font-family:'Oxfam Global Headline',"Arial Black",Arial,sans-serif; font-weight:normal;
+    text-transform:uppercase; font-size:clamp(1.6rem,4vw,2.5rem); line-height:1.05;
+    margin:0 auto 1rem; max-width:20ch; text-shadow:0 2px 10px rgba(0,0,0,.4);
+  }
+  .cta-band p{max-width:44ch; margin:0 auto 1.7rem; font-size:1.05rem; color:#eef3e8}
+
   /* ── Footer ─────────────────────────────────────────── */
   footer{
     background:#0d1207; color:#9aa88c; text-align:center; padding:2.6rem 1.2rem; font-size:.8rem;
   }
   footer .oxfam{
-    color:var(--green); font-family:'Oxfam Global Headline',"Arial Black",Arial,sans-serif;
-    font-size:1.4rem; letter-spacing:1px; text-transform:uppercase;
+    background:#fff; border-radius:12px; padding:.6rem 1rem; display:inline-block;
   }
+  footer .oxfam img{display:block; height:40px; width:auto}
   .socials{display:flex; justify-content:center; gap:.8rem; margin:1.2rem 0 1.1rem}
   .socials a{
     width:42px; height:42px; border-radius:50%; border:1.5px solid #3d4a33;
@@ -395,13 +418,8 @@
 
   <a class="btn btn-green" href="#don">J'agis, je fais un don</a>
 
-  <div class="hero-logo" aria-label="Oxfam France">
-    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-      <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="4"/>
-      <circle cx="24" cy="17" r="5" fill="currentColor"/>
-      <path d="M24 24c-6 0-9 4-9 9h18c0-5-3-9-9-9z" fill="currentColor"/>
-    </svg>
-    <div class="wordmark">Oxfam<small>France</small></div>
+  <div class="hero-logo">
+    <img src="assets/logo-oxfam-france.png" alt="Oxfam France">
   </div>
 </header>
 
@@ -413,24 +431,44 @@
     <p class="sec-sub">Depuis 1988, Oxfam France lutte contre les injustices et la pauvreté, sur le terrain comme auprès des décideurs.</p>
     <div class="combats">
       <div class="combat-card">
-        <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
-        <h4>Justice climatique</h4>
-        <p>Enquêtes et campagnes pour que les multinationales polluantes et les 1 % les plus riches financent la transition écologique.</p>
+        <div class="combat-photo">
+          <img src="assets/combat-climat.jpg" alt="Agricultrice dans une rizière" loading="lazy">
+          <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
+        </div>
+        <div class="combat-body">
+          <h4>Justice climatique</h4>
+          <p>Enquêtes et campagnes pour que les multinationales polluantes et les 1 % les plus riches financent la transition écologique.</p>
+        </div>
       </div>
       <div class="combat-card">
-        <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12C19 16.4 12 21 12 21z"/></svg></div>
-        <h4>Urgences humanitaires</h4>
-        <p>Eau potable, nourriture et abris pour les populations touchées par les conflits et les catastrophes, comme à Gaza ou au Sahel.</p>
+        <div class="combat-photo">
+          <img src="assets/combat-urgences.jpg" alt="Femmes mobilisées avec des mégaphones" loading="lazy">
+          <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.5 5.5 5.5 0 0 1 21.5 12C19 16.4 12 21 12 21z"/></svg></div>
+        </div>
+        <div class="combat-body">
+          <h4>Urgences humanitaires</h4>
+          <p>Eau potable, nourriture et abris pour les populations touchées par les conflits et les catastrophes, comme à Gaza ou au Sahel.</p>
+        </div>
       </div>
       <div class="combat-card">
-        <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v6M9 16.5h6"/></svg></div>
-        <h4>Inégalités de genre</h4>
-        <p>Plaidoyer pour l'égalité salariale, les droits des femmes et contre les violences sexistes, en France et dans le monde.</p>
+        <div class="combat-photo">
+          <img src="assets/combat-genre.jpg" alt="Femme le poing levé" loading="lazy">
+          <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 12v6M9 16.5h6"/></svg></div>
+        </div>
+        <div class="combat-body">
+          <h4>Inégalités de genre</h4>
+          <p>Plaidoyer pour l'égalité salariale, les droits des femmes et contre les violences sexistes, en France et dans le monde.</p>
+        </div>
       </div>
       <div class="combat-card">
-        <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 7c0-1.7 2.2-3 5-3s5 1.3 5 3-2.2 3-5 3-5 1.3-5 3 2.2 3 5 3 5-1.3 5-3"/></svg></div>
-        <h4>Justice fiscale</h4>
-        <p>Pour la taxation des ultra-riches et la fin de l'évasion fiscale qui prive les services publics de milliards d'euros.</p>
+        <div class="combat-photo">
+          <img src="assets/combat-fiscale.jpg" alt="Manifestation « Taxez les riches »" loading="lazy">
+          <div class="combat-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 7c0-1.7 2.2-3 5-3s5 1.3 5 3-2.2 3-5 3-5 1.3-5 3 2.2 3 5 3 5-1.3 5-3"/></svg></div>
+        </div>
+        <div class="combat-body">
+          <h4>Justice fiscale</h4>
+          <p>Pour la taxation des ultra-riches et la fin de l'évasion fiscale qui prive les services publics de milliards d'euros.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -604,9 +642,18 @@
   <div><b>Depuis 1988</b><span>Oxfam France lutte<br>contre les inégalités</span></div>
 </div>
 
+<!-- Bandeau CTA plein cadre -->
+<section class="cta-band">
+  <img src="assets/cta-band.jpg" alt="" loading="lazy">
+  <div class="cta-scrim"></div>
+  <h2>Sans vous, rien n'est possible</h2>
+  <p>Votre don devient une pression réelle sur les puissants et une aide vitale pour les plus vulnérables. Agissez avant le 31 décembre.</p>
+  <a class="btn btn-green" href="#don">Je fais un don</a>
+</section>
+
 <footer class="rel">
   <span class="annot" style="top:12px; left:14px">⑨ Footer — réseaux sociaux + mentions</span>
-  <div class="oxfam">Oxfam France</div>
+  <div class="oxfam"><img src="assets/logo-oxfam-france.png" alt="Oxfam France"></div>
   <div class="socials">
     <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.4-.3.8-.3 1.9-.1 1.3-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.5 1.1.7.4.1.8.3 1.9.3 1.3.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.4.3-.8.3-1.9.1-1.3.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.4-.1-.8-.3-1.9-.3-1.3-.1-1.6-.1-4.8-.1zm0 3.1a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 8.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg></a>
     <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 3c.4 2 1.7 3.4 3.8 3.5v3c-1.5 0-2.8-.4-3.9-1.2v6.3c0 3.9-2.7 6.4-6.1 6.4-3.2 0-5.9-2.5-5.9-5.9 0-3.5 3-6.2 6.7-5.8v3.1c-.3-.1-.7-.2-1-.2-1.6 0-2.8 1.3-2.8 2.9 0 1.7 1.3 2.9 2.9 2.9 1.7 0 3.1-1.3 3.1-3.3V3h3.2z"/></svg></a>
